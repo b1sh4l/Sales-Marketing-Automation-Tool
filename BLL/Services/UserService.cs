@@ -108,5 +108,24 @@ namespace BLL.Services
         {
             return DataAccessFactory.UserData().Delete(id);
         }
+
+        public static UserDTO SignIn(string email, string password)
+        {
+            var userRepo = DataAccessFactory.UserData();
+            var data = userRepo.GetByEmailAndPassword(email, password);
+
+            if (data == null)
+            {
+                return null;
+            }
+
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<User, UserDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<UserDTO>(data);
+            return mapped;
+        }
     }
 }

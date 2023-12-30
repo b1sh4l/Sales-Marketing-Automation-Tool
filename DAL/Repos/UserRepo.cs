@@ -70,6 +70,10 @@ namespace DAL.Repos
             return null;
         }
 
+        public User GetByEmailAndPassword(string email, string password)
+        {
+            return db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+        }
 
     }
 }

@@ -14,5 +14,6 @@ namespace DAL.Interfaces
         RET Update(Type obj);
         bool Delete(ID id);
         RET GetAll();
+        RET GetByEmailAndPassword(string email, string password);
     }
 }

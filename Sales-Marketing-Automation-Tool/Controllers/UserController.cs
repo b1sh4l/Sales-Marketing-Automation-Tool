@@ -62,13 +62,13 @@ namespace Sales_Marketing_Automation_Tool.Controllers
         {
             try
             {
-                // Validate the id and userDto parameters
+                
                 if (id <= 0 || userDto == null)
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid input parameters.");
                 }
 
-                // Call the Update method in UserService
+                
                 var data = UserService.Update(id, userDto);
 
                 if (data == null)
@@ -97,6 +97,34 @@ namespace Sales_Marketing_Automation_Tool.Controllers
             catch (Exception ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/user/signin")]
+        public HttpResponseMessage SignIn([FromBody] UserDTO signInRequest)
+        {
+            try
+            {
+                if (signInRequest == null || string.IsNullOrEmpty(signInRequest.Email) || string.IsNullOrEmpty(signInRequest.Password))
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid request data");
+                }
+
+                var signedInUser = UserService.SignIn(signInRequest.Email, signInRequest.Password);
+
+                if (signedInUser != null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, signedInUser);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid email or password");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
     }
