@@ -58,10 +58,9 @@ namespace DAL.Repos
 
             if (existingUser != null)
             {
-                // Update only the properties that have changed
+                
                 db.Entry(existingUser).CurrentValues.SetValues(obj);
 
-                // Save changes to the database
                 if (db.SaveChanges() > 0)
                 {
                     return existingUser;
@@ -70,10 +69,6 @@ namespace DAL.Repos
 
             return null;
         }
-
-
-
-
 
 
     }
