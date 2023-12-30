@@ -3,6 +3,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,15 +53,28 @@ namespace DAL.Repos
 
         public User Update(User obj)
         {
-            db.Entry(obj).State = EntityState.Modified;
+            var existingUser = db.Users.Find(obj.Id);
+            Console.WriteLine($"existingUser: {existingUser}");
 
-            if (db.SaveChanges() > 0)
+            if (existingUser != null)
             {
-                return obj;
+                // Update only the properties that have changed
+                db.Entry(existingUser).CurrentValues.SetValues(obj);
+
+                // Save changes to the database
+                if (db.SaveChanges() > 0)
+                {
+                    return existingUser;
+                }
             }
 
             return null;
         }
+
+
+
+
+
 
     }
 }
