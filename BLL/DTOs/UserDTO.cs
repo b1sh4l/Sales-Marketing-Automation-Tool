@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace DAL.Models
+namespace BLL.DTOs
 {
-    public class User
+    public class UserDTO
     {
-        [Key] 
-        public int Id { get; set; }
-
         [Required, EmailAddress]
         public string Email { get; set; }
 
-        [Required, StringLength(20)]
-        public string Password { get; set; }
+        [Required]
+        public string Password { get; set; } //TODO: Hash
 
         [Required, StringLength(50)]
         public string Name { get; set; }

@@ -11,4 +11,12 @@ namespace DAL.Models
     {
         public DbSet<User> Users { get; set; }
     }
+
+    //User -> Manager, Saler/Marketer
+    //Subscription
+    //Campaign
+    //Notifications
+    //Contact
+
+
 }
