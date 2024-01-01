@@ -10,6 +10,7 @@ namespace DAL.Models
     internal class UserContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Token> Tokens { get; set; }
     }
 
     //User -> Manager, Saler/Marketer

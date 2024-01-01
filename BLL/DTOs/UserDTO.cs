@@ -14,7 +14,7 @@ namespace BLL.DTOs
         public string Email { get; set; }
 
         [Required]
-        public string Password { get; set; } //TODO: Hash
+        public string Password { get; set; } 
 
         [Required, StringLength(50)]
         public string Name { get; set; }
