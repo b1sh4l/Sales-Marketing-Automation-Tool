@@ -21,9 +21,15 @@ namespace DAL
             return new UserRepo();
         }
 
-        public static IRepo<Token, int, Token> TokenData()
+        public static IToken<Token, int, Token> TokenData()
         {
             return new TokenRepo();
         }
+
+        public static IUser<User> UserData2()
+        {
+            return new UserRepo();
+        }
+
     }
 }

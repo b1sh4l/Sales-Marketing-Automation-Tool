@@ -11,6 +11,7 @@ namespace DAL.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Token> Tokens { get; set; }
+        public DbSet<Payment> Payment { get; set; }
     }
 
     //User -> Manager, Saler/Marketer

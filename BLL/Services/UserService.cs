@@ -111,7 +111,7 @@ namespace BLL.Services
 
         public static UserDTO SignIn(string email, string password)
         {
-            var userRepo = DataAccessFactory.UserData();
+            var userRepo = DataAccessFactory.UserData2();
             var data = userRepo.GetByEmailAndPassword(email, password);
 
             if (data == null)

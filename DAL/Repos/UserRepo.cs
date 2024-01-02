@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class UserRepo : Repo, IRepo<User, int, User>, IAuth<bool>
+    internal class UserRepo : Repo, IRepo<User, int, User>, IAuth<bool>, IUser<User>
     {
         public User Create(User obj)
         {
@@ -103,5 +103,6 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
+
     }
 }

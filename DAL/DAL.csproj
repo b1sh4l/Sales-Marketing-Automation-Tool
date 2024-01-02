@@ -58,6 +58,8 @@
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
+    <Compile Include="Interfaces\IToken.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Migrations\202312301608428_initDB.cs" />
     <Compile Include="Migrations\202312301608428_initDB.designer.cs">
       <DependentUpon>202312301608428_initDB.cs</DependentUpon>
@@ -70,7 +72,16 @@
     <Compile Include="Migrations\202401011300269_updatedDB.designer.cs">
       <DependentUpon>202401011300269_updatedDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401020826284_paymentDB.cs" />
+    <Compile Include="Migrations\202401020826284_paymentDB.designer.cs">
+      <DependentUpon>202401020826284_paymentDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401021036202_updateDBwithPayment.cs" />
+    <Compile Include="Migrations\202401021036202_updateDBwithPayment.designer.cs">
+      <DependentUpon>202401021036202_updateDBwithPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserContext.cs" />
@@ -92,6 +103,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401011300269_updatedDB.resx">
       <DependentUpon>202401011300269_updatedDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401020826284_paymentDB.resx">
+      <DependentUpon>202401020826284_paymentDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401021036202_updateDBwithPayment.resx">
+      <DependentUpon>202401021036202_updateDBwithPayment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

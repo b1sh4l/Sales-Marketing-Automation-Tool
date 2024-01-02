@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class TokenRepo: Repo, IRepo<Token, int, Token>
+    internal class TokenRepo: Repo, IToken<Token, int, Token>
     {
 
         public Token Create(Token obj)
@@ -21,25 +21,7 @@ namespace DAL.Repos
             return null;
         }
 
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Token GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Token GetByEmailAndPassword(string email, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Token> Read()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Token Read(int id)
         {
@@ -51,11 +33,7 @@ namespace DAL.Repos
             return db.Tokens.Where(token => token.TKey.Equals(tKey)).ToList();
         }
 
-        public Token Update(int id, Token entity)
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         public Token Update(Token obj)
         {
             var tokenToUpdate = Read(int.Parse(obj.TKey));
@@ -67,15 +45,6 @@ namespace DAL.Repos
             return null;
         }
 
-        public object Update(List<Token> exTk)
-        {
-            throw new NotImplementedException();
-        }
-
-        object IRepo<Token, int, Token>.Read()
-        {
-            throw new NotImplementedException();
-        }
     }
  
 }
