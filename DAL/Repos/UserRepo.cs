@@ -99,10 +99,7 @@ namespace DAL.Repos
             throw new NotImplementedException();
         }
 
-        object IRepo<User, int, User>.Update(List<Token> exTk)
-        {
-            throw new NotImplementedException();
-        }
+
 
     }
 }

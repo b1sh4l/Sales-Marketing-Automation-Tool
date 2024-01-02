@@ -45,6 +45,11 @@ namespace DAL.Repos
             return null;
         }
 
+        object IToken<Token, int, Token>.Update(List<Token> exTk)
+        {
+            throw new NotImplementedException();
+        }
+
     }
  
 }

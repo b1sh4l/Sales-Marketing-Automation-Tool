@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace DAL.Interfaces
         RET Read(ID id);
         List<RET> Read(string tKey);
         RET Update(TYPE obj);
+        object Update(List<Token> exTk);
 
     }
 }

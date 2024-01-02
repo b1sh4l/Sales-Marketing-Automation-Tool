@@ -16,7 +16,7 @@ namespace DAL.Interfaces
         RET Update(Type obj);
         bool Delete(ID id);
         RET GetAll();
-        object Update(List<Token> exTk);
+       
         object Read();
     }
 }
