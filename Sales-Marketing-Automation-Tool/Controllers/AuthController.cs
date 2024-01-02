@@ -33,5 +33,28 @@ namespace Sales_Marketing_Automation_Tool.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("api/auth/signout")]
+        public HttpResponseMessage SignOut(SignOutModel signout)
+        {
+           try
+            {
+                var res = AuthService.SignOut(signout.TKey);
+                if (res)
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Signed out successfully");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, "Invalid token");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+        }
     }
 }
