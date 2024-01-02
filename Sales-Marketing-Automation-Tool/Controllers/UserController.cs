@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using BLL.DTOs;
 using BLL.Services;
+using Sales_Marketing_Automation_Tool.Auth;
 
 namespace Sales_Marketing_Automation_Tool.Controllers
 {

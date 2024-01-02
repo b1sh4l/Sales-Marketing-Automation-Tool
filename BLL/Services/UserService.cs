@@ -127,5 +127,7 @@ namespace BLL.Services
             var mapped = mapper.Map<UserDTO>(data);
             return mapped;
         }
+
+        
     }
 }

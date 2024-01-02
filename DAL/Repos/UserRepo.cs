@@ -86,5 +86,22 @@ namespace DAL.Repos
 
             return true;
         }
+
+
+
+        object IRepo<User, int, User>.Read()
+        {
+            return db.Users.ToList();
+        }
+
+        List<User> IRepo<User, int, User>.Read(string tKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        object IRepo<User, int, User>.Update(List<Token> exTk)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

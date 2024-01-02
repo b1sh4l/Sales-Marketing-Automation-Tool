@@ -46,6 +46,11 @@ namespace DAL.Repos
             return db.Tokens.FirstOrDefault(Token => Token.TKey.Equals(id));
         }
 
+        public List<Token> Read(string tKey)
+        {
+            return db.Tokens.Where(token => token.TKey.Equals(tKey)).ToList();
+        }
+
         public Token Update(int id, Token entity)
         {
             throw new NotImplementedException();
@@ -62,7 +67,12 @@ namespace DAL.Repos
             return null;
         }
 
-        List<Token> IRepo<Token, int, Token>.Read()
+        public object Update(List<Token> exTk)
+        {
+            throw new NotImplementedException();
+        }
+
+        object IRepo<Token, int, Token>.Read()
         {
             throw new NotImplementedException();
         }

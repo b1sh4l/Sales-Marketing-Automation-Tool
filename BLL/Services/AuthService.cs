@@ -5,6 +5,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,38 @@ namespace BLL.Services
 
             }
             return null;
+        }
+
+        public static bool IsTokenValid(string tKey)
+        {
+            var tokens = DataAccessFactory.TokenData().Read(tKey);
+            var exTk = tokens?.FirstOrDefault();
+
+            if (exTk != null && exTk.ExpiresAt <= DateTime.Now)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public static bool SignOut(string tKey)
+        {
+            var tokens = DataAccessFactory.TokenData().Read(tKey);
+
+            var exTk = tokens?.FirstOrDefault();
+
+            if (exTk != null)
+            {
+                exTk.ExpiresAt = DateTime.Now;
+
+                if (DataAccessFactory.TokenData().Update(exTk) != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
