@@ -12,9 +12,6 @@ namespace BLL.DTOs
     {
 
         [Required]
-        public int Id { get; set; }
-
-        [Required]
         public string CardNumber { get; set; }
 
         [Required]
@@ -44,7 +41,7 @@ namespace BLL.DTOs
         [Required]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required, EmailAddress]
         public string EmailAddress { get; set; }
 
         [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]

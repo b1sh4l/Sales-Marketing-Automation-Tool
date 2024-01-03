@@ -76,24 +76,31 @@ namespace BLL.Services
 
             if (existingPayment != null)
             {
-                var cfg = new MapperConfiguration(c =>
+                existingPayment.CardNumber = payment.CardNumber;
+                existingPayment.CardHolderName = payment.CardHolderName;
+                existingPayment.ExpirationDate = payment.ExpirationDate;
+                existingPayment.CVV = payment.CVV;
+                existingPayment.BillingAddress = payment.BillingAddress;
+                existingPayment.City = payment.City;
+                existingPayment.StateProvince = payment.StateProvince;
+                existingPayment.ZipPostalCode = payment.ZipPostalCode;
+                existingPayment.Country = payment.Country;
+                existingPayment.PhoneNumber = payment.PhoneNumber;
+                existingPayment.EmailAddress = payment.EmailAddress;
+                existingPayment.Amount = payment.Amount;
+                existingPayment.PaymentStatus = payment.PaymentStatus;
+
+                var updatedPayment = DataAccessFactory.PaymentData().Update(existingPayment);
+                if (updatedPayment != null)
                 {
-                    c.CreateMap<PaymentDTO, Payment>();
-                });
-                var mapper = new Mapper(cfg);
-                var mapped = mapper.Map<Payment>(payment);
-                var data = DataAccessFactory.PaymentData().Update(mapped);
-                if (data == null)
-                {
-                    return null;
+                    var cfg = new MapperConfiguration(c =>
+                    {
+                        c.CreateMap<Payment, PaymentDTO>();
+                    });
+                    var mapper = new Mapper(cfg);
+                    var mapped = mapper.Map<PaymentDTO>(updatedPayment);
+                    return mapped;
                 }
-                var cfg2 = new MapperConfiguration(c =>
-                {
-                    c.CreateMap<Payment, PaymentDTO>();
-                });
-                var mapper2 = new Mapper(cfg2);
-                var mapped2 = mapper2.Map<PaymentDTO>(data);
-                return mapped2;
             }
             return null;
         }
