@@ -94,12 +94,5 @@ namespace DAL.Repos
             return db.Users.ToList();
         }
 
-        List<User> IRepo<User, int, User>.Read(string tKey)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
     }
 }

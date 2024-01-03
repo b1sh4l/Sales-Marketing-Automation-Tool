@@ -23,6 +23,8 @@
                         Country = c.String(nullable: false),
                         PhoneNumber = c.String(nullable: false),
                         EmailAddress = c.String(nullable: false),
+                        Amount = c.Double(nullable: true),
+                        PaymentStatus = c.String(nullable: true),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -31,5 +31,17 @@ namespace DAL
             return new UserRepo();
         }
 
+        public static IRepo<Payment, int, Payment> PaymentData()
+        {
+            return new PaymentRepo();
+        }
+
+        public static IPayment PaymentData3()
+        {
+            return new PaymentRepo();
+        }
+
+        public static IPayment PaymentData2 { get; } = new PaymentRepo();
+
     }
 }
