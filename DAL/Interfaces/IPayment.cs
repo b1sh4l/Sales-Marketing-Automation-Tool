@@ -22,5 +22,11 @@ namespace DAL.Interfaces
         Task<Payment> ReadAsync(int id);
         Task<Payment> CreateAsync(Payment payment);
 
+        List<Payment> GetPaymentsByStatus(PaymentStatus status);
+        List<Payment> GetPaymentsByCardHolder(string cardHolderName);
+        List<Payment> GetPendingPayments();
+        List<Payment> GetRefundedPayments();
+        List<Payment> GetCanceledPayments();
+
     }
 }

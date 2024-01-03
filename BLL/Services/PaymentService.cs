@@ -179,5 +179,37 @@ namespace BLL.Services
 
             return DataAccessFactory.PaymentData3().VerifyPayment(mappedPayment);
         }
+
+        public static List<PaymentDTO> GetPaymentsByCardHolder(string cardHolderName)
+        {
+            var data = DataAccessFactory.PaymentData3().GetPaymentsByCardHolder(cardHolderName);
+            var mapper = new Mapper(new MapperConfiguration(c => c.CreateMap<Payment, PaymentDTO>()));
+            var mapped = mapper.Map<List<PaymentDTO>>(data);
+            return mapped;
+        }
+
+        public static List<PaymentDTO> GetPendingPayments()
+        {
+            var data = DataAccessFactory.PaymentData3().GetPendingPayments();
+            var mapper = new Mapper(new MapperConfiguration(c => c.CreateMap<Payment, PaymentDTO>()));
+            var mapped = mapper.Map<List<PaymentDTO>>(data);
+            return mapped;
+        }
+
+        public static List<PaymentDTO> GetRefundedPayments()
+        {
+            var data = DataAccessFactory.PaymentData3().GetRefundedPayments();
+            var mapper = new Mapper(new MapperConfiguration(c => c.CreateMap<Payment, PaymentDTO>()));
+            var mapped = mapper.Map<List<PaymentDTO>>(data);
+            return mapped;
+        }
+
+        public static List<PaymentDTO> GetCanceledPayments()
+        {
+            var data = DataAccessFactory.PaymentData3().GetCanceledPayments();
+            var mapper = new Mapper(new MapperConfiguration(c => c.CreateMap<Payment, PaymentDTO>()));
+            var mapped = mapper.Map<List<PaymentDTO>>(data);
+            return mapped;
+        }
     }
 }

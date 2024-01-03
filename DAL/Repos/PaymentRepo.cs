@@ -198,7 +198,31 @@ namespace DAL.Repos
             return db.Payment.ToList();
         }
 
+        public List<Payment> GetPaymentsByStatus(PaymentStatus status)
+        {
+            return db.Payment.Where(p => p.PaymentStatus == status).ToList();
+        }
+
+        public List<Payment> GetPaymentsByCardHolder(string cardHolderName)
+        {
+            return db.Payment.Where(p => p.CardHolderName == cardHolderName).ToList();
+        }
+
+        public List<Payment> GetPendingPayments()
+        {
+            return db.Payment.Where(p => p.PaymentStatus == PaymentStatus.Pending).ToList();
+        }
+
+        public List<Payment> GetRefundedPayments()
+        {
+            return db.Payment.Where(p => p.PaymentStatus == PaymentStatus.Refunded).ToList();
+        }
+
+        public List<Payment> GetCanceledPayments()
+        {
+            return db.Payment.Where(p => p.PaymentStatus == PaymentStatus.Canceled).ToList();
+        }
+
+
     }
-    
-    
 }

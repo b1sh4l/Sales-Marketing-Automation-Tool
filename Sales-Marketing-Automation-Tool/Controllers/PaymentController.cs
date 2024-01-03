@@ -100,7 +100,7 @@ namespace Sales_Marketing_Automation_Tool.Controllers
             }
         }
 
-       
+
 
         [HttpPost]
         [Route("api/payment/generate-invoice")]
@@ -191,6 +191,65 @@ namespace Sales_Marketing_Automation_Tool.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
             }
         }
-       
+
+        [HttpGet]
+        [Route("api/payment/card-holder/")]
+        public HttpResponseMessage GetPaymentsByCardHolder(string cardHolderName)
+        {
+            try
+            {
+                var data = PaymentService.GetPaymentsByCardHolder(cardHolderName);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/payment/pending")]
+        public HttpResponseMessage GetPendingPayments()
+        {
+            try
+            {
+                var data = PaymentService.GetPendingPayments();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/payment/refunded")]
+        public HttpResponseMessage GetRefundedPayments()
+        {
+            try
+            {
+                var data = PaymentService.GetRefundedPayments();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/payment/canceled")]
+        public HttpResponseMessage GetCanceledPayments()
+        {
+            try
+            {
+                var data = PaymentService.GetCanceledPayments();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
     }
 }
