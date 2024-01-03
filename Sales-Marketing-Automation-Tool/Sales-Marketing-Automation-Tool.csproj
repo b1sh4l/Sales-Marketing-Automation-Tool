@@ -126,6 +126,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Auth\SignedIn.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\LeadController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

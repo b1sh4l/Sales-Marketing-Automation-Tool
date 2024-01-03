@@ -74,7 +74,8 @@ namespace DAL.Repos
         }
         public List<Lead> GetAll(int page, int pageSize)
         {
-            return db.Leads.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            //return db.Leads.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            return db.Leads.OrderBy(l => l.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
 
     }

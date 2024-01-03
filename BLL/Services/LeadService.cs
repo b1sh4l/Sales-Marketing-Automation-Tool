@@ -12,6 +12,7 @@ namespace BLL.Services
 {
     public class LeadService
     {
+
         public static List<LeadDTO> GetAll()
         {
             var data = DataAccessFactory.LeadData().Read();
@@ -48,24 +49,86 @@ namespace BLL.Services
 
         public static LeadDTO Create(LeadDTO lead)
         {
-            var cfg = new MapperConfiguration(c =>
+            var config = new MapperConfiguration(cfg =>
             {
-                c.CreateMap<LeadDTO, LeadDTO>();
+                cfg.CreateMap<LeadDTO, Lead>();  // Map from LeadDTO to Lead
+                cfg.CreateMap<Lead, LeadDTO>();  // Map from Lead to LeadDTO
             });
-            var mapper = new Mapper(cfg);
+
+            var mapper = new Mapper(config);
             var mapped = mapper.Map<Lead>(lead);
             var data = DataAccessFactory.LeadData().Create(mapped);
+
             if (data == null)
             {
                 return null;
             }
-            var cfg2 = new MapperConfiguration(c =>
-            {
-                c.CreateMap<Lead, LeadDTO>();
-            });
-            var mapper2 = new Mapper(cfg2);
-            var mapped2 = mapper2.Map<LeadDTO>(data);
+
+            var mapped2 = mapper.Map<LeadDTO>(data);
             return mapped2;
+        }
+
+
+        public static LeadDTO Update(LeadDTO lead)
+        {
+            var existingLead = DataAccessFactory.LeadData().Read(lead.Id);
+            if (existingLead != null)
+            {
+                existingLead.LeadName = lead.LeadName;
+                existingLead.Email = lead.Email;
+                existingLead.PhoneNumber = lead.PhoneNumber;
+                existingLead.Message = lead.Message;
+                existingLead.LeadStatus = lead.LeadStatus;
+
+                var updatedLead = DataAccessFactory.LeadData().Update(existingLead);
+                if (updatedLead != null)
+                {
+                    var cfg = new MapperConfiguration(c =>
+                    {
+                        c.CreateMap<Lead, LeadDTO>();
+                    });
+                    var mapper = new Mapper(cfg);
+                    var mapped = mapper.Map<LeadDTO>(updatedLead);
+                    return mapped;
+                }
+            }
+            return null;
+        }
+
+        public static bool Delete(int id)
+        {
+            return DataAccessFactory.LeadData().Delete(id);
+        }
+
+        private static readonly IMapper Mapper;
+
+        static LeadService()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Lead, LeadDTO>();
+                cfg.CreateMap<LeadDTO, Lead>();
+            });
+
+            Mapper = config.CreateMapper();
+        }
+
+        public static List<LeadDTO> GetLeadsByStatus(LeadStatus status)
+        {
+            var data = DataAccessFactory.LeadData2().GetLeadsByStatus(status);
+            return Mapper.Map<List<LeadDTO>>(data);
+        }
+
+        public static List<LeadDTO> GetLeadsByName(string leadName)
+        {
+            var data = DataAccessFactory.LeadData2().GetLeadsByName(leadName);
+            return Mapper.Map<List<LeadDTO>>(data);
+        }
+
+        public static List<LeadDTO> GetAll(int page, int pageSize)
+        {
+            var data = DataAccessFactory.LeadData2().GetAll(page, pageSize);
+            return Mapper.Map<List<LeadDTO>>(data);
         }
 
     }
