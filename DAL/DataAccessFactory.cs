@@ -43,5 +43,14 @@ namespace DAL
 
         public static IPayment PaymentData2 { get; } = new PaymentRepo();
 
+        public static IRepo<Lead, int, Lead> LeadData()
+        {
+            return new LeadRepo();
+        }
+        public static ILead LeadData2()
+        {
+            return new LeadRepo();
+        }
+
     }
 }

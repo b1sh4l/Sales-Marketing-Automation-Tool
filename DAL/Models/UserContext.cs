@@ -12,7 +12,7 @@ namespace DAL.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Token> Tokens { get; set; }
         public DbSet<Payment> Payment { get; set; }
-
+        public DbSet<Lead> Leads { get; set; }
 
     }
 

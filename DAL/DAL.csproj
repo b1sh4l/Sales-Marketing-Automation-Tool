@@ -140,6 +140,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
+    <Compile Include="Interfaces\ILead.cs" />
     <Compile Include="Interfaces\IPayment.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Interfaces\IToken.cs" />
@@ -172,12 +173,22 @@
     <Compile Include="Migrations\202401030022392_amountColumnPaymentDBAdded.designer.cs">
       <DependentUpon>202401030022392_amountColumnPaymentDBAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401031005287_LeadDB.cs" />
+    <Compile Include="Migrations\202401031005287_LeadDB.designer.cs">
+      <DependentUpon>202401031005287_LeadDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401031019462_UpdateLeadDB.cs" />
+    <Compile Include="Migrations\202401031019462_UpdateLeadDB.designer.cs">
+      <DependentUpon>202401031019462_UpdateLeadDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Lead.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\LeadRepo.cs" />
     <Compile Include="Repos\PaymentRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
     <Compile Include="Repos\TokenRepo.cs" />
@@ -208,6 +219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401030022392_amountColumnPaymentDBAdded.resx">
       <DependentUpon>202401030022392_amountColumnPaymentDBAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401031005287_LeadDB.resx">
+      <DependentUpon>202401031005287_LeadDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401031019462_UpdateLeadDB.resx">
+      <DependentUpon>202401031019462_UpdateLeadDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
