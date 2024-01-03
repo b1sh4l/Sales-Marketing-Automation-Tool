@@ -78,5 +78,31 @@ namespace DAL.Repos
             return db.Leads.OrderBy(l => l.Id).Skip((page - 1) * pageSize).Take(pageSize).ToList();
         }
 
+
+        public Lead GetLeadByEmail(string email)
+        {
+            return db.Leads.FirstOrDefault(l => l.Email == email);
+        }
+
+        public Lead GetLeadByPhoneNumber(string phoneNumber)
+        {
+            return db.Leads.FirstOrDefault(l => l.PhoneNumber == phoneNumber);
+        }
+
+        public List<Lead> GetLeadsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return db.Leads.Where(l => l.ContactedOn >= startDate && l.ContactedOn <= endDate).ToList();
+        }
+
+        public int GetTotalLeadCount()
+        {
+            return db.Leads.Count();
+        }
+
+        public List<Lead> GetLeadsByContactedUser(string contactedBy)
+        {
+            return db.Leads.Where(l => l.ContactedBy == contactedBy).ToList();
+        }
+
     }
 }

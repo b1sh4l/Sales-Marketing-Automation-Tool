@@ -10,15 +10,17 @@ namespace BLL.DTOs
 {
     public class LeadDTO
     {
-        [Key, Required]
+        [Key]
         public int Id { get; set; }
-        [Required, StringLength(60)]
+        [StringLength(60)]
         public string LeadName { get; set; }
-        [Required, EmailAddress]
+        [EmailAddress]
         public string Email { get; set; }
-        [Required, StringLength(11)]
+        [ StringLength(11)]
         public string PhoneNumber { get; set; }
         public string Message { get; set; }
         public LeadStatus LeadStatus { get; set; }
+        public String ContactedBy { get; set; }
+        public DateTime ContactedOn { get; set; }
     }
 }

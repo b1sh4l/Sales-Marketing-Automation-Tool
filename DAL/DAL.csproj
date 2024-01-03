@@ -181,6 +181,14 @@
     <Compile Include="Migrations\202401031019462_UpdateLeadDB.designer.cs">
       <DependentUpon>202401031019462_UpdateLeadDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401031400334_UniqueEmailDB.cs" />
+    <Compile Include="Migrations\202401031400334_UniqueEmailDB.designer.cs">
+      <DependentUpon>202401031400334_UniqueEmailDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401031420081_UpdateLeadDB1.cs" />
+    <Compile Include="Migrations\202401031420081_UpdateLeadDB1.designer.cs">
+      <DependentUpon>202401031420081_UpdateLeadDB1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Lead.cs" />
     <Compile Include="Models\Payment.cs" />
@@ -225,6 +233,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401031019462_UpdateLeadDB.resx">
       <DependentUpon>202401031019462_UpdateLeadDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401031400334_UniqueEmailDB.resx">
+      <DependentUpon>202401031400334_UniqueEmailDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401031420081_UpdateLeadDB1.resx">
+      <DependentUpon>202401031420081_UpdateLeadDB1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

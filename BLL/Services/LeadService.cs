@@ -131,5 +131,34 @@ namespace BLL.Services
             return Mapper.Map<List<LeadDTO>>(data);
         }
 
+        public static LeadDTO GetLeadByEmail(string email)
+        {
+            var data = DataAccessFactory.LeadData2().GetLeadByEmail(email);
+            return Mapper.Map<LeadDTO>(data);
+        }
+
+        public static LeadDTO GetLeadByPhoneNumber(string phoneNumber)
+        {
+            var data = DataAccessFactory.LeadData2().GetLeadByPhoneNumber(phoneNumber);
+            return Mapper.Map<LeadDTO>(data);
+        }
+
+        public static List<LeadDTO> GetLeadsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var data = DataAccessFactory.LeadData2().GetLeadsByDateRange(startDate, endDate);
+            return Mapper.Map<List<LeadDTO>>(data);
+        }
+
+        public static int GetTotalLeadCount()
+        {
+            return DataAccessFactory.LeadData2().GetTotalLeadCount();
+        }
+
+        public static List<LeadDTO> GetLeadsByContactedUser(string contactedBy)
+        {
+            var data = DataAccessFactory.LeadData2().GetLeadsByContactedUser(contactedBy);
+            return Mapper.Map<List<LeadDTO>>(data);
+        }
+
     }
 }
