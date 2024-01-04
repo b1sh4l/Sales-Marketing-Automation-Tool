@@ -205,5 +205,20 @@ namespace Sales_Marketing_Automation_Tool.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, "An error occurred while calculating lead conversion rates.");
             }
         }
+
+        [HttpGet]
+        [Route("api/lead/conversion-rates-by-month")]
+        public HttpResponseMessage GetLeadConversionRatesByMonth()
+        {
+            try
+            {
+                var conversionRatesByMonth = LeadService.CalculateLeadConversionRatesByMonth();
+                return Request.CreateResponse(HttpStatusCode.OK, conversionRatesByMonth);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "An error occurred while calculating lead conversion rates by month.");
+            }
+        }
     }
 }

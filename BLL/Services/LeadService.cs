@@ -5,6 +5,8 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -204,6 +206,38 @@ namespace BLL.Services
 
             return conversionRates;
         }
+
+        public static Dictionary<string, double> CalculateLeadConversionRatesByMonth()
+        {
+            Dictionary<string, double> conversionRatesByMonth = new Dictionary<string, double>();
+
+                List<LeadDTO> allLeads = GetAll();
+
+                if (allLeads == null || allLeads.Count == 0)
+                {
+                    return conversionRatesByMonth;
+                }
+
+                var leadsByMonth = allLeads
+                    .GroupBy(lead => new { lead.ContactedOn.Year, lead.ContactedOn.Month })
+                    .OrderBy(group => group.Key.Year)
+                    .ThenBy(group => group.Key.Month);
+
+                foreach (var monthGroup in leadsByMonth)
+                {
+                    string monthYearKey = $"{monthGroup.Key.Month}-{monthGroup.Key.Year}";
+
+                    int totalLeads = monthGroup.Count();
+                    int convertedLeadsCount = monthGroup.Count(lead => lead.LeadStatus == LeadStatus.ClosedWon);
+
+                    double conversionRate = totalLeads == 0 ? 0.0 : (double)convertedLeadsCount / totalLeads * 100;
+
+                    conversionRatesByMonth.Add(monthYearKey, conversionRate);
+                }
+
+                return conversionRatesByMonth;
+        }
+
 
     }
 }
