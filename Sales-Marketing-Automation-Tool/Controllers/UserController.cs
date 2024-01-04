@@ -14,6 +14,7 @@ namespace Sales_Marketing_Automation_Tool.Controllers
     {
         [HttpGet]
         [Route("api/user")]
+        [SignedIn]
         public HttpResponseMessage Get()
         {
             try
@@ -29,6 +30,7 @@ namespace Sales_Marketing_Automation_Tool.Controllers
 
         [HttpGet]
         [Route("api/user/{id}")]
+        [SignedIn]
         public HttpResponseMessage Get(int id)
         {
             try

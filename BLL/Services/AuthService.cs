@@ -48,7 +48,7 @@ namespace BLL.Services
             var tokens = DataAccessFactory.TokenData().Read(tKey);
             var exTk = tokens?.FirstOrDefault();
 
-            if (exTk != null && exTk.ExpiresAt <= DateTime.Now)
+            if (exTk != null && exTk.ExpiresAt >= DateTime.Now)
             {
                 return true;
             }
