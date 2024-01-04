@@ -51,8 +51,8 @@ namespace BLL.Services
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<LeadDTO, Lead>();  // Map from LeadDTO to Lead
-                cfg.CreateMap<Lead, LeadDTO>();  // Map from Lead to LeadDTO
+                cfg.CreateMap<LeadDTO, Lead>();  
+                cfg.CreateMap<Lead, LeadDTO>(); 
             });
 
             var mapper = new Mapper(config);
@@ -158,6 +158,51 @@ namespace BLL.Services
         {
             var data = DataAccessFactory.LeadData2().GetLeadsByContactedUser(contactedBy);
             return Mapper.Map<List<LeadDTO>>(data);
+        }
+
+        public static double CalculateLeadConversionRate()
+        {
+
+            int totalLeads = GetTotalLeadCount();
+
+            if (totalLeads == 0)
+            {
+                return 0.0;
+            }
+     
+            List<LeadDTO> convertedLeads = GetLeadsByStatus(LeadStatus.ClosedWon);
+
+            double conversionRate = (double)convertedLeads.Count / totalLeads * 100;
+
+            return conversionRate;
+        }
+
+        public static Dictionary<LeadStatusEnum, double> CalculateLeadConversionRates()
+        {
+            Dictionary<LeadStatusEnum, double> conversionRates = new Dictionary<LeadStatusEnum, double>();
+
+            int totalLeads = GetTotalLeadCount();
+
+            if (totalLeads == 0)
+            {
+                foreach (LeadStatusEnum status in Enum.GetValues(typeof(LeadStatusEnum)))
+                {
+                    conversionRates.Add(status, 0.0);
+                }
+
+                return conversionRates;
+            }
+
+            foreach (LeadStatusEnum status in Enum.GetValues(typeof(LeadStatusEnum)))
+            {
+                List<LeadDTO> leadsByStatus = GetLeadsByStatus((LeadStatus)status);
+
+                double conversionRate = (double)leadsByStatus.Count / totalLeads * 100;
+
+                conversionRates.Add(status, conversionRate);
+            }
+
+            return conversionRates;
         }
 
     }

@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Web.Http;
 
+
 namespace Sales_Marketing_Automation_Tool.Controllers
 {
     public class LeadController : ApiController
@@ -78,7 +79,7 @@ namespace Sales_Marketing_Automation_Tool.Controllers
         //public HttpResponseMessage GetLeadsByStatus(string status)
         //{
         //    if (Enum.TryParse<LeadStatusEnum>(status, out var leadStatus))
-        //    {
+        //   {
         //        var leads = LeadService.GetLeadsByStatus(leadStatus);
         //        return Request.CreateResponse(HttpStatusCode.OK, leads);
         //    }
@@ -87,7 +88,7 @@ namespace Sales_Marketing_Automation_Tool.Controllers
 
 
         [HttpGet]
-        [Route("api/lead/name/{leadName}")]
+        [Route("api/lead/name")]
         public HttpResponseMessage GetLeadsByName(string leadName)
         {
             var leads = LeadService.GetLeadsByName(leadName);
@@ -171,6 +172,38 @@ namespace Sales_Marketing_Automation_Tool.Controllers
         {
             var leads = LeadService.GetLeadsByContactedUser(contactedBy);
             return Request.CreateResponse(HttpStatusCode.OK, leads);
+        }
+
+        [HttpGet]
+        [Route("api/lead/conversionRate")]
+        public HttpResponseMessage GetLeadConversionRate()
+        {
+            try
+            {
+                double conversionRate = LeadService.CalculateLeadConversionRate();
+
+                return Request.CreateResponse(HttpStatusCode.OK, conversionRate);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "An error occurred while calculating the lead conversion rate.");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/lead/analytics")]
+        public HttpResponseMessage GetLeadConversionRates()
+        {
+            try
+            {
+                Dictionary<LeadStatusEnum, double> conversionRates = LeadService.CalculateLeadConversionRates();
+
+                return Request.CreateResponse(HttpStatusCode.OK, conversionRates);
+            }
+            catch (Exception ex)
+            { 
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, "An error occurred while calculating lead conversion rates.");
+            }
         }
     }
 }

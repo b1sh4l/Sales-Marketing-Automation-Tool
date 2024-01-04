@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    public enum LeadStatusEnum
+    public enum LeadStatusEnum1
     {
         Contacted,
         Ongoing,

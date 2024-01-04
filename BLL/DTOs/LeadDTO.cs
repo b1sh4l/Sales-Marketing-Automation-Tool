@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
+    public enum LeadStatusEnum
+    {
+        Contacted,
+        Ongoing,
+        ClosedWon,
+        ClosedLost
+    }
     public class LeadDTO
     {
         [Key]
